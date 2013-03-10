@@ -29,12 +29,13 @@ class API(object):
         return Team(response['teams'][0])
 
     def teams(self):
+        ''' Return all MLB teams as a list of Team objects '''
         method = 'teams'
         response = self.__request(method)
+        teams = []
         for raw_team in response['teams']:
-            team = Team(raw_team)
-            print "'" + team.abbreviation + "' : " + str(team.id)
-        return ''
+            teams.append(Team(raw_team))
+        return teams
 
     def __request(self, method):
         url = ''.join([self.urlroot, '/',
