@@ -24,3 +24,4 @@ class Team():
         self.abbreviation = results['abbreviation']
         self.location = results['location']
         self.links = results['links']
+        self.venue = results['venues'][0]['name']
