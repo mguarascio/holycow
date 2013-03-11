@@ -1,6 +1,7 @@
 import requests
 import json
 from team import Team
+from news import News
 
 
 class API(object):
@@ -16,6 +17,16 @@ class API(object):
         self.api_root = api_root
         self.enables = ['venues']
 
+    def teams(self):
+        ''' Return all MLB teams as a list of Team objects '''
+        method = 'teams'
+        response = self.__request(method)
+        teams = []
+        data = response['sports'][0]['leagues'][0]
+        for raw_team in data['teams']:
+            teams.append(Team(raw_team))
+        return teams
+
     def team(self, abbr=None, id=None):
         ''' Lookup a team by abbreviation, or by id e.g. API.team(abbr='NYY') or API.team(id=1) '''
         team_id = id
@@ -26,16 +37,35 @@ class API(object):
 
         method = ''.join(['teams/', str(team_id)])
         response = self.__request(method)
-        return Team(response['teams'][0])
+        data = response['sports'][0]['leagues'][0]
+        return Team(data['teams'][0])
 
-    def teams(self):
-        ''' Return all MLB teams as a list of Team objects '''
-        method = 'teams'
+    def news(self):
+        ''' Top MLB news '''
+        method = 'news'
         response = self.__request(method)
-        teams = []
-        for raw_team in response['teams']:
-            teams.append(Team(raw_team))
-        return teams
+        news = []
+        for raw_news in response['headlines']:
+            news.append(News(raw_news))
+        return news
+
+    def team_news(self, abbr):
+        ''' MLB news for a specific team '''
+        method = 'news'
+        if abbr and abbr in API.team_ids:
+            team_id = API.team_ids[abbr]
+
+        if team_id:
+            method = ''.join(['teams/', str(team_id), '/news'])
+        else:
+            raise ValueError("Invalid team abbr: " + abbr)
+
+        response = self.__request(method)
+        news = []
+        for raw_news in response['headlines']:
+            news.append(News(raw_news))
+
+        return news
 
     def __request(self, method):
         url = ''.join([self.urlroot, '/',
@@ -44,11 +74,9 @@ class API(object):
                        method,
                        '?apikey=', self.api_key,
                        '&enable=', ','.join(self.enables)])
-        print url
         r = requests.get(url)
         response = json.loads(r.text)
-        league = response['sports'][0]['leagues'][0]
-        return league
+        return response
 
     team_ids = {
         'BAL': 1,
