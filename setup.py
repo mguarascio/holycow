@@ -7,6 +7,7 @@ setup(name='holycow',
       description='ESPN Baseball API library for python',
       author='Mike Guarascio',
       author_email='michael.guarascio@gmail.com',
-      url='https://github.com/mguarascio/holycow.git',
-      packages=['requests'],
+      url='https://github.com/mguarascio/holycow',
+      py_modules=['holycow'],
+      requires=['requests']
      )
