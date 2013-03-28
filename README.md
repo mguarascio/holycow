@@ -33,8 +33,8 @@ Examples
 	# get all teams 
 	teams = api.teams()
 	print [team.name for team in teams]
-        '''
-            [u'Orioles', u'Red Sox', u'Angels', u'White Sox', u'Indians', u'Tigers', u'Royals', u'Brewers', u'Twins', u'Yankees', u'Athletics', u'Mariners', u'Rangers', u'Blue Jays', u'Braves', u'Cubs', u'Reds', u'Astros', u'Dodgers', u'Nationals', u'Mets', u'Phillies', u'Pirates', u'Cardinals', u'Padres', u'Giants', u'Rockies', u'Marlins', u'Diamondbacks', u'Rays']
+	'''
+	[u'Orioles', u'Red Sox', u'Angels', u'White Sox', u'Indians', u'Tigers', u'Royals', u'Brewers', u'Twins', u'Yankees', u'Athletics', u'Mariners', u'Rangers', u'Blue Jays', u'Braves', u'Cubs', u'Reds', u'Astros', u'Dodgers', u'Nationals', u'Mets', u'Phillies', u'Pirates', u'Cardinals', u'Padres', u'Giants', u'Rockies', u'Marlins', u'Diamondbacks', u'Rays']
 	'''
  
 	# get a specific team's data
