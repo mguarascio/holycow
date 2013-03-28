@@ -20,7 +20,7 @@ Installation
 2) Use Git to clone the repository from Github
 and install it manually:
 
-	git clone git@github.com:mguarascio/holycow.git
+	git clone https://github.com/mguarascio/holycow.git
 	python setup.py install
 
 Examples
