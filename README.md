@@ -1,6 +1,6 @@
 holycow
 =======
-*A python wrapper for the ESPN (baseball) API* 
+*A python wrapper for the ESPN (baseball) API*   
 http://developer.espn.com/io-docs
 
 Holy cow! (http://en.wikipedia.org/wiki/Phil_Rizzuto)
@@ -19,7 +19,7 @@ Installation
 and install it manually:
 
 	git clone git@github.com:mguarascio/holycow.git
-        python setup.py install
+	python setup.py install
 
 Examples
 --------
