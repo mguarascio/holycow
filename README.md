@@ -56,3 +56,10 @@ Examples
 	[{u'href': u'http://espn.go.com/new-york/mlb/story/_/id/9105109/phil-hughes-new-york-yankees-start-season-disabled-list?ex_cid=espnapi_public'}, {u'href': u'http://espn.go.com/mlb/story/_/id/9104778/forbes-mlb-teams-see-historic-23-percent-surge-average-values?ex_cid=espnapi_public'},...]
 	'''
 
+	# get a specific game score (requires event_id)
+	score = api.event_score('330330101')
+
+	print ''.join([score.score, ' ', score.status])
+	# {u'Mets': 1, u'Orioles': 7} FINAL
+
+

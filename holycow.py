@@ -2,6 +2,7 @@ import requests
 import json
 from team import Team
 from news import News
+from scores import EventScore
 
 
 class API(object):
@@ -67,6 +68,20 @@ class API(object):
 
         return news
 
+    def event_score(self, event_id):
+        ''' Scores data for a given eventid '''
+        method = ''.join(['events/', str(event_id)])
+        response = self.__request(method)
+        scores = []
+        #print response
+        data = response['sports'][0]['leagues'][0]['events'][0]
+        #print data
+        for raw_scores in data['competitions']:
+            print raw_scores
+            scores.append(EventScore(raw_scores))
+
+        return scores[0]
+
     def __request(self, method):
         url = ''.join([self.urlroot, '/',
                        self.version, '/',
@@ -74,6 +89,7 @@ class API(object):
                        method,
                        '?apikey=', self.api_key,
                        '&enable=', ','.join(self.enables)])
+        print url
         r = requests.get(url)
         response = json.loads(r.text)
         return response
